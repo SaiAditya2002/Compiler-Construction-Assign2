@@ -14,11 +14,11 @@
 %token PROG INT REAL BOOLEAN CHAR VAR TO DOWNTO IF ELSE WHILE FOR DO ARRAY AND OR NOT START END READ WRITE OF ASSIGN SC COLON CM ARRLEN1 ARRLEN2 INTVAL REALVAL CHARVAL STRING VARIABLE ADD SUB MUL DIV REM EQUALS NOT_EQUALS LESS_THAN GREATER_THAN LESS_THAN_EQUAL GREATER_THAN_EQUAL NL
 
 %%
-program: prog declaration code { printf("Valid Program\n");}
+program: prog declaration code { }
        ;
 prog: PROG VARIABLE SC NL { }
     ;
-declaration: VAR NL var_lines { }
+declaration: VAR var_lines { }
            ;
 var_lines: var_list COLON type SC NL var_lines { }
          |
@@ -45,8 +45,16 @@ main: stat_lines{ }
 stat_lines: stmt stat_lines SC NL {}
 	    |
 	    ;
-stmt:
+stmt: looping {}
+    | assignment {}
+    | conditionals {}
     ;
+looping:
+       ;
+assignment:
+          ;
+conditionals:
+	     ;
 
 %%
 int main()

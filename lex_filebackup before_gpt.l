@@ -1,24 +1,23 @@
 %{
 #include "y.tab.h"
-#include <ctype.h>
-#include <string.h>
-#include <stdlib.h>
+#include<math.h>
+#include<ctype.h>
+#include<string.h>
+#include<stdlib.h>
 #include <stdio.h>
-int lineCount=0;
+#include <stdbool.h>
 
+int lineCount=0;
+//add tolower function and call that below.
 void toLowercase(char *str) {
-    while (*str) {
-        *str = tolower(*str);  // Convert character to lowercase
-        str++;
+    int length = strlen(str);
+    for (int i = 0; i < length; i++) {
+        str[i] = tolower(str[i]);
     }
 }
-
 %}
-
 %x ARRAY_STATE
-
 %%
-
 [Pp][Rr][Oo][Gg][Rr][Aa][Mm] {return PROG;}
 [Ii][Nn][Tt] {return INT;}
 [Rr][Ee][Aa][Ll] {return REAL;}
@@ -45,36 +44,14 @@ void toLowercase(char *str) {
 ";" {return SC;}
 ":" {return COLON;}
 "," {return CM;}
-
 \[ {BEGIN(ARRAY_STATE);}
-<ARRAY_STATE>.*\.\. { 
-    char s1[100]; 
-    strncpy(s1, yytext, strlen(yytext) - 2);  // Copy substring excluding the last two characters
-    s1[strlen(yytext) - 2] = '\0';  // Null-terminate the string
-    yylval.c1 = atoi(s1);  // Convert string to integer
-    return ARRLEN1;
-}
-<ARRAY_STATE>.*] { 
-    char s2[100]; 
-    strncpy(s2, yytext, strlen(yytext) - 1);  // Copy substring excluding the last character
-    s2[strlen(yytext) - 1] = '\0';  // Null-terminate the string
-    yylval.c2 = atoi(s2);  // Convert string to integer
-    BEGIN(INITIAL);  // Switch back to the initial state
-    return ARRLEN2;
-}
-
+<ARRAY_STATE>.*\.\. { char*s1[100];strcpy(s1, yytext); int len = strlen(s1); strncpy(s1 + len - 2, "", 2); yylval.c1=stoi(s1); return ARRLEN1;}
+<ARRAY_STATE>.*] {char*s2[100];strcpy(s2, yytext); int len = strlen(s2); strncpy(s2 + len - 1, "", 1); yylval.c2=stoi(s2); BEGIN(INTIAL); return ARRLEN2;}
 [-]?[0-9]+([eE][+-]?[1-9][0-9]*)? {yylval.Int = atoi(yytext);return INTVAL;}
 [-]?[0-9]*\.[0-9]+([eE][+-]?[1-9][0-9]*)? {yylval.Float = atof(yytext);return REALVAL;}
-\'[^\'\n]\' {yylval.Char = yytext[1]; return CHARVAL;}
+\'[^\'\n]\' {yylval.Char=yytext[1]; return CHARVAL;}
 \"[^\"\n]*\" {yylval.sval = strdup(yytext); return STRING;}
-[a-zA-Z][a-zA-Z0-9_]* {
-    char var_str[100];
-    strncpy(var_str, yytext, strlen(yytext));  // Copy the entire string
-    var_str[strlen(yytext)] = '\0';  // Null-terminate the string
-    toLowercase(var_str);  // Convert string to lowercase
-    yylval.var_str = strdup(var_str);
-    return VARIABLE;
-}
+[a-zA-Z][a-zA-Z0-9_]* {yylval.var_str = toLowercase(strdup(yytext)); return VARIABLE;}
 \+ {return ADD;}
 \- {return SUB;}
 \* {return MUL;}
@@ -86,14 +63,5 @@ void toLowercase(char *str) {
 ">"  {return GREATER_THAN;}   
 "<=" {return LESS_THAN_EQUAL;} 
 ">=" {return GREATER_THAN_EQUAL;}
-
-\n { lineCount++; return NL;}
-
+\n { lineCount++; return NL;};
 . { }
-
-%%
-
-
-
-
-

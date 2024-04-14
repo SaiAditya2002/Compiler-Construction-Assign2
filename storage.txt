@@ -1,0 +1,20 @@
+stmt: looping {}
+    | assignment {}
+    | conditionals {}
+    ;
+looping:
+       ;
+assignment:
+          ;
+conditionals:
+	     ;
+	     
+	     
+	     
+	     
+program AddTwoNumbers ;
+var
+num1 , num2 , sum : Integer ;
+begin
+end.
+
