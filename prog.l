@@ -3,7 +3,39 @@
 #include<math.h>
 #include<string.h>
 #include<stdlib.h>
+
+//function that converts a c string to lower case
+char* toLower(char *str)
+{
+    size_t len = strlen(str);
+    char* lowerStr = (char *)malloc((len+1)* sizeof(char));
+
+    if(lowerStr == NULL)
+    {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+
+    //Conversion
+    for(size_t i=0; i<len; i++)
+    {
+        if(str[i]>='A' && str[i]<='Z')
+        {
+            lowerStr[i] = str[i]+32;
+
+        }
+        else
+        {
+            lowerStr[i] = str[i]; //do nothing
+        }
+    }
+    lowerStr[len] = '\0'; //null terminator
+    return lowerStr;
+}
+
+
 %}
+
 %%
 ["program" | "int" | "real" | "boolean" | "char" | "var" | "for" | "do" | "while" | "array" | "and" | "or" | "not" | "begin" | "end" | "read" | "write"] {yylval.sval= malloc(sizeof(char)*10); strcpy(yylval.sval, yytext); return KEYWORD;}
 "program" {return PROG;}
@@ -32,3 +64,4 @@
 \n return NL;
 . { }
 %%
+
