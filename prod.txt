@@ -1,0 +1,19 @@
+//For prog
+Prog -> Heading ';' Block '.'
+Heading -> Prog id '(' output ')'
+Block -> varBlock statBlock
+varBlock -> VAR varDec1 ';' varDec2
+varDec1 -> id id1 '; id
+id1 -> ',' id id1
+varDec2 -> varDec1 ';' varDec2 
+
+statBlock -> BEGIN stat1 END;
+stat1 -> stat stat2
+stat -> statBlock | If Expr THEN Stat | If Expr THEN Stat Else Stat | 
+
+
+Todo:
+1. Add for do while
+2. Add for for loop
+3. Add for arithmetic Expressions
+4. Add for array
