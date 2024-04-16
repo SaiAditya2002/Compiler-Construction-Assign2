@@ -54,51 +54,54 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    PROG = 258,                    /* PROG  */
-    INT = 259,                     /* INT  */
-    REAL = 260,                    /* REAL  */
-    BOOLEAN = 261,                 /* BOOLEAN  */
-    CHAR = 262,                    /* CHAR  */
+    ID = 258,                      /* ID  */
+    NUM = 259,                     /* NUM  */
+    REAL_NUM = 260,                /* REAL_NUM  */
+    CHAR_CONST = 261,              /* CHAR_CONST  */
+    PROGRAM = 262,                 /* PROGRAM  */
     VAR = 263,                     /* VAR  */
-    TO = 264,                      /* TO  */
-    DOWNTO = 265,                  /* DOWNTO  */
-    IF = 266,                      /* IF  */
-    ELSE = 267,                    /* ELSE  */
-    WHILE = 268,                   /* WHILE  */
-    FOR = 269,                     /* FOR  */
-    DO = 270,                      /* DO  */
-    ARRAY = 271,                   /* ARRAY  */
-    AND = 272,                     /* AND  */
-    OR = 273,                      /* OR  */
-    NOT = 274,                     /* NOT  */
-    START = 275,                   /* START  */
-    END = 276,                     /* END  */
-    READ = 277,                    /* READ  */
-    WRITE = 278,                   /* WRITE  */
-    OF = 279,                      /* OF  */
-    ASSIGN = 280,                  /* ASSIGN  */
-    SC = 281,                      /* SC  */
-    COLON = 282,                   /* COLON  */
-    CM = 283,                      /* CM  */
-    ARRLEN1 = 284,                 /* ARRLEN1  */
-    ARRLEN2 = 285,                 /* ARRLEN2  */
-    INTVAL = 286,                  /* INTVAL  */
-    REALVAL = 287,                 /* REALVAL  */
-    CHARVAL = 288,                 /* CHARVAL  */
-    STRING = 289,                  /* STRING  */
-    VARIABLE = 290,                /* VARIABLE  */
-    ADD = 291,                     /* ADD  */
-    SUB = 292,                     /* SUB  */
-    MUL = 293,                     /* MUL  */
-    DIV = 294,                     /* DIV  */
-    REM = 295,                     /* REM  */
-    EQUALS = 296,                  /* EQUALS  */
-    NOT_EQUALS = 297,              /* NOT_EQUALS  */
-    LESS_THAN = 298,               /* LESS_THAN  */
-    GREATER_THAN = 299,            /* GREATER_THAN  */
-    LESS_THAN_EQUAL = 300,         /* LESS_THAN_EQUAL  */
-    GREATER_THAN_EQUAL = 301,      /* GREATER_THAN_EQUAL  */
-    NL = 302                       /* NL  */
+    INTEGER = 264,                 /* INTEGER  */
+    REAL = 265,                    /* REAL  */
+    BOOLEAN = 266,                 /* BOOLEAN  */
+    CHAR = 267,                    /* CHAR  */
+    TO = 268,                      /* TO  */
+    DOWNTO = 269,                  /* DOWNTO  */
+    IF = 270,                      /* IF  */
+    ELSE = 271,                    /* ELSE  */
+    WHILE = 272,                   /* WHILE  */
+    FOR = 273,                     /* FOR  */
+    DO = 274,                      /* DO  */
+    ARRAY = 275,                   /* ARRAY  */
+    AND = 276,                     /* AND  */
+    OR = 277,                      /* OR  */
+    NOT = 278,                     /* NOT  */
+    START = 279,                   /* START  */
+    END = 280,                     /* END  */
+    READ = 281,                    /* READ  */
+    WRITE = 282,                   /* WRITE  */
+    ASSIGN = 283,                  /* ASSIGN  */
+    PLUS = 284,                    /* PLUS  */
+    MINUS = 285,                   /* MINUS  */
+    MUL = 286,                     /* MUL  */
+    DIV = 287,                     /* DIV  */
+    MOD = 288,                     /* MOD  */
+    EQ = 289,                      /* EQ  */
+    NEQ = 290,                     /* NEQ  */
+    LT = 291,                      /* LT  */
+    GT = 292,                      /* GT  */
+    LE = 293,                      /* LE  */
+    GE = 294,                      /* GE  */
+    LPAREN = 295,                  /* LPAREN  */
+    RPAREN = 296,                  /* RPAREN  */
+    LBRACK = 297,                  /* LBRACK  */
+    RBRACK = 298,                  /* RBRACK  */
+    COLON = 299,                   /* COLON  */
+    SEMICOLON = 300,               /* SEMICOLON  */
+    COMMA = 301,                   /* COMMA  */
+    PERIOD = 302,                  /* PERIOD  */
+    INVALID = 303,                 /* INVALID  */
+    OF = 304,                      /* OF  */
+    THEN = 305                     /* THEN  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -107,66 +110,67 @@ extern int yydebug;
 #define YYEOF 0
 #define YYerror 256
 #define YYUNDEF 257
-#define PROG 258
-#define INT 259
-#define REAL 260
-#define BOOLEAN 261
-#define CHAR 262
+#define ID 258
+#define NUM 259
+#define REAL_NUM 260
+#define CHAR_CONST 261
+#define PROGRAM 262
 #define VAR 263
-#define TO 264
-#define DOWNTO 265
-#define IF 266
-#define ELSE 267
-#define WHILE 268
-#define FOR 269
-#define DO 270
-#define ARRAY 271
-#define AND 272
-#define OR 273
-#define NOT 274
-#define START 275
-#define END 276
-#define READ 277
-#define WRITE 278
-#define OF 279
-#define ASSIGN 280
-#define SC 281
-#define COLON 282
-#define CM 283
-#define ARRLEN1 284
-#define ARRLEN2 285
-#define INTVAL 286
-#define REALVAL 287
-#define CHARVAL 288
-#define STRING 289
-#define VARIABLE 290
-#define ADD 291
-#define SUB 292
-#define MUL 293
-#define DIV 294
-#define REM 295
-#define EQUALS 296
-#define NOT_EQUALS 297
-#define LESS_THAN 298
-#define GREATER_THAN 299
-#define LESS_THAN_EQUAL 300
-#define GREATER_THAN_EQUAL 301
-#define NL 302
+#define INTEGER 264
+#define REAL 265
+#define BOOLEAN 266
+#define CHAR 267
+#define TO 268
+#define DOWNTO 269
+#define IF 270
+#define ELSE 271
+#define WHILE 272
+#define FOR 273
+#define DO 274
+#define ARRAY 275
+#define AND 276
+#define OR 277
+#define NOT 278
+#define START 279
+#define END 280
+#define READ 281
+#define WRITE 282
+#define ASSIGN 283
+#define PLUS 284
+#define MINUS 285
+#define MUL 286
+#define DIV 287
+#define MOD 288
+#define EQ 289
+#define NEQ 290
+#define LT 291
+#define GT 292
+#define LE 293
+#define GE 294
+#define LPAREN 295
+#define RPAREN 296
+#define LBRACK 297
+#define RBRACK 298
+#define COLON 299
+#define SEMICOLON 300
+#define COMMA 301
+#define PERIOD 302
+#define INVALID 303
+#define OF 304
+#define THEN 305
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 6 "prog.y"
+#line 22 "claude.y"
 
-	char* sval; 
-	char* var_str;
-	int c1, c2, Int; 
-	float Float;
-	char Char;
-	
+    int num;
+    float real;
+    char ch;
+    char *id;
 
-#line 170 "y.tab.h"
+#line 174 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

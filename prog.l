@@ -40,7 +40,7 @@ void toLowercase(char *str) {
 [Ee][Nn][Dd][.] {return END;}
 [Rr][Ee][Aa][Dd] {return READ;}
 [Ww][Rr][Ii][Tt][Ee] {return WRITE;}
-[Oo][Ff] {return OF;}
+[Oo][Ff] {return OF;} //NOT in Claude
 ":=" {return ASSIGN;}
 ";" {return SC;}
 ":" {return COLON;}
@@ -87,9 +87,9 @@ void toLowercase(char *str) {
 "<=" {return LESS_THAN_EQUAL;} 
 ">=" {return GREATER_THAN_EQUAL;}
 
-\n { lineCount++; return NL;}
-
-. { }
+[ \t]+ /* ignore whitespace */
+\n {lineCount++;}
+. {printf("Invalid character: %s at line %d\n", yytext, lineCount);}
 
 %%
 

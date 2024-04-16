@@ -11,7 +11,7 @@
 	char Char;
 	
 }
-%token PROG INT REAL BOOLEAN CHAR VAR TO DOWNTO IF ELSE WHILE FOR DO ARRAY AND OR NOT START END READ WRITE OF ASSIGN SC COLON CM ARRLEN1 ARRLEN2 INTVAL REALVAL CHARVAL STRING VARIABLE ADD SUB MUL DIV REM EQUALS NOT_EQUALS LESS_THAN GREATER_THAN LESS_THAN_EQUAL GREATER_THAN_EQUAL NL
+%token PROG INT REAL BOOLEAN CHAR VAR TO DOWNTO IF ELSE WHILE FOR DO ARRAY AND OR NOT START END READ WRITE OF ASSIGN SC COLON CM ARRLEN1 ARRLEN2 INTVAL REALVAL CHARVAL STRING VARIABLE ADD SUB MUL DIV REM EQUALS NOT_EQUALS LESS_THAN GREATER_THAN LESS_THAN_EQUAL GREATER_THAN_EQUAL NL INVALID
 
 %%
 program: prog declaration code { printf("Valid Program\n");}
@@ -23,6 +23,14 @@ declaration: VAR NL var_lines { }
 var_lines: var_list COLON type SC NL var_lines { }
          |
 	   ;
+var_lines: var_decl SC{ }
+         | var_lines var_decl SC { }
+	   ;
+var_decl: id_list COLON type { }
+	  ;
+id_list: VARIABLE { }
+	 | id_list CM VARIABLE { }
+	 ;
 type: dtype { }
     | ARRAY ARRLEN1 ARRLEN2 OF dtype { }
     ;
@@ -32,18 +40,14 @@ dtype: INT { }
     | BOOLEAN { }
     | CHAR { }
     ;
-var_list: VARIABLE v_list { }
-	  ;
-v_list: CM VARIABLE v_list{ }
-      | 
-	;
+
 code: START main END { }
     ;
-main: stat_lines{ }
+main: statements{ }
     |
     ;
-stat_lines: stmt stat_lines SC NL {}
-	    |
+statements: statment {}
+	    | statements statement
 	    ;
 stmt:
     ;
