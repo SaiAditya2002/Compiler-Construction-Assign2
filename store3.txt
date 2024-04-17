@@ -1,0 +1,46 @@
+[Pp][Rr][Oo][Gg][Rr][Aa][Mm]  return PROGRAM;
+[Ii][Nn][Tt]        		return INTEGER;
+[Rr][Ee][Aa][Ll]           	return REAL;
+[Bb][Oo][Oo][Ll][Ee][Aa][Nn]  return BOOLEAN;
+[Cc][Hh][Aa][Rr]           	return CHAR;
+[Vv][Aa][Rr]              	return VAR;
+[Tt][Oo]            		return TO;
+[Dd][Oo][Ww][Nn][Tt][Oo]      return DOWNTO;
+[Ii][Ff]             		return IF;
+[Ee][Ll][Ss][Ee]           	return ELSE;
+[Ww][Hh][Ii][Ll][Ee]          return WHILE;
+[Ff][Oo][Rr]            	return FOR;
+[Dd][Oo]              		return DO;
+[Aa][Rr][Rr][Aa][Yy]          return ARRAY;
+[Aa][Nn][Dd]            	return AND;
+[Oo][Rr]            		return OR;
+[Nn][Oo][Tt]           		return NOT;
+[Bb][Ee][Gg][Ii][Nn]          return START;
+[Ee][Nn][Dd]            	return END;
+[Rr][Ee][Aa][Dd]            	return READ;
+[Ww][Rr][Ii][Tt][Ee]          return WRITE;
+[Oo][Ff] 				return OF;
+
+
+
+program         return PROGRAM;
+integer         return INTEGER;
+real            return REAL;
+boolean         return BOOLEAN;
+char            return CHAR;
+var             return VAR;
+to              return TO;
+downto          return DOWNTO;
+if              return IF;
+else            return ELSE;
+while           return WHILE;
+for             return FOR;
+do              return DO;
+array           return ARRAY;
+and             return AND;
+or              return OR;
+not             return NOT;
+begin           return START;
+end             return END;
+read            return READ;
+write           return WRITE;
